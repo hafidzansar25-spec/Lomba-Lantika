@@ -1,64 +1,30 @@
 /* assets/css/style.css */
 
-/* 1. Import Font (Opsional, jika tidak ditaruh di HTML) */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-/* 2. Base Styling */
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* Mencegah scroll horizontal akibat background blob */
 }
 
-/* 3. Custom Scrollbar (Membuat scrollbar lebih tipis dan modern) */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+/* --- 1. CUSTOM SCROLLBAR --- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #F8FAFC; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* --- 2. ANIMASI MODAL --- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { 
+    from { opacity: 0; transform: translateY(20px) scale(0.95); } 
+    to { opacity: 1; transform: translateY(0) scale(1); } 
 }
+#modal-overlay { animation: fadeIn 0.3s ease-out forwards; }
+#modal-content { animation: slideUp 0.3s ease-out forwards; }
 
-::-webkit-scrollbar-track {
-    background: #F8FAFC; /* Warna light */
-}
-
-::-webkit-scrollbar-thumb {
-    background: #CBD5E1;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #94A3B8;
-}
-
-/* 4. Animasi untuk Modal (Pop-up) */
-/* Kita buat animasi fade in dan slide up saat modal muncul */
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from { 
-        opacity: 0;
-        transform: translateY(20px) scale(0.95); 
-    }
-    to { 
-        opacity: 1;
-        transform: translateY(0) scale(1); 
-    }
-}
-
-/* Class untuk Overlay Modal */
-#modal-overlay {
-    animation: fadeIn 0.3s ease-out forwards;
-}
-
-/* Class untuk Konten Modal */
-#modal-content {
-    animation: slideUp 0.3s ease-out forwards;
-}
-
-/* 5. Utility untuk Memotong Teks (Truncate) */
+/* --- 3. UTILITY TEKS --- */
 .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -66,22 +32,54 @@ body {
     overflow: hidden;
 }
 
-/* 6. Efek Hover pada Card Katalog */
-/* Menambahkan sedikit bayangan tambahan saat card di-hover */
+/* --- 4. ELEMEN ARTISTIK: BACKGROUND BLOB/ORBS --- */
+.bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.6;
+    animation: floatBlob 10s infinite alternate ease-in-out;
+}
+
+@keyframes floatBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+/* --- 5. ELEMEN ARTISTIK: GARIS COREtan (SCRIBBLE) --- */
+/* Menggunakan SVG sebagai background untuk efek coretan di bawah teks */
+.scribble-underline {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.scribble-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: -5%;
+    width: 110%;
+    height: 15px;
+    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 200 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2,10 C40,20 80,0 120,10 C160,20 180,5 198,10' stroke='%23F59E0B' stroke-width='4' stroke-linecap='round' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+}
+
+/* --- 6. EFEK HOVER KARTU (BOUNCY) --- */
 .gig-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
 }
 
 .gig-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px) rotate(1deg);
+    box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
-/* 7. Memperbaiki Input Autofill (Agar warna background tidak kuning saat diisi browser) */
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
+/* Memperbaiki Input Autofill */
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
     -webkit-text-fill-color: #1E293B !important;
     transition: background-color 5000s ease-in-out 0s;
