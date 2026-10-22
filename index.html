@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HustleYouth - Micro-Freelance Marketplace</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: {
+                        primary: '#6366F1', // Electric Indigo
+                        secondary: '#F59E0B', // Warm Amber
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-light text-dark font-sans antialiased">
 
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fa-solid fa-bolt text-primary text-2xl"></i>
+                    <a href="index.html" class="font-bold text-2xl tracking-tight">Hustle<span class="text-primary">Youth</span></a>
+                </div>
+                <div>
+                    <a href="tambah-jasa.html" class="bg-primary hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg font-semibold transition duration-300 shadow-md shadow-indigo-200">
+                        <i class="fa-solid fa-plus mr-2"></i>Buka Jasa
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero & Search Section -->
+    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Temukan Jasa Kreatif <br><span class="text-primary">Talenta Muda</span> Terbaik</h1>
+        <p class="text-gray-500 max-w-2xl mx-auto mb-8">Platform micro-freelance untuk mahasiswa, pelajar, dan profesional muda. Pesan jasa desain, video, coding, hingga penulisan dengan mudah.</p>
+        
+        <!-- Search Input (Wajib dari PRD) -->
+        <div class="max-w-xl mx-auto relative">
+            <i class="fa-solid fa-search absolute left-4 top-3.5 text-gray-400"></i>
+            <input type="text" id="search-input" placeholder="Cari jasa (misal: Desain Logo)..." 
+                class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent shadow-sm">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        
+        <!-- Category Filters (Wajib dari PRD) -->
+        <div id="category-filters" class="flex flex-wrap justify-center gap-3 mb-10">
+            <button class="filter-btn px-5 py-2 rounded-full font-medium bg-primary text-white transition-colors" data-category="Semua">Semua</button>
+            <button class="filter-btn px-5 py-2 rounded-full font-medium bg-white text-gray-600 border border-gray-200 hover:border-primary hover:text-primary transition-colors" data-category="Design">Design</button>
+            <button class="filter-btn px-5 py-2 rounded-full font-medium bg-white text-gray-600 border border-gray-200 hover:border-primary hover:text-primary transition-colors" data-category="Video">Video</button>
+            <button class="filter-btn px-5 py-2 rounded-full font-medium bg-white text-gray-600 border border-gray-200 hover:border-primary hover:text-primary transition-colors" data-category="Code">Code</button>
+            <button class="filter-btn px-5 py-2 rounded-full font-medium bg-white text-gray-600 border border-gray-200 hover:border-primary hover:text-primary transition-colors" data-category="Writing">Writing</button>
+        </div>
+
+        <!-- Grid Container (Wajib dari PRD, diisi via JS) -->
+        <!-- Saya tambahkan beberapa card dummy di bawah ini agar saat di-preview tidak kosong melompong -->
+        <div id="gigs-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            
+            <!-- Contoh Card (Akan dihapus/ditimpa oleh JS) -->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 overflow-hidden group">
+                <div class="relative h-48 bg-gray-200 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Desain" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    <span class="absolute top-3 left-3 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Design</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-lg mb-1 truncate">Desain Logo Bisnis Modern</h3>
+                    <p class="text-sm text-gray-500 mb-4"><i class="fa-solid fa-graduation-cap mr-1"></i> SMK Negeri 1 Jakarta</p>
+                    <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                        <span class="font-bold text-primary">Rp 150.000</span>
+                        <button class="text-sm font-semibold text-primary hover:text-indigo-800">Detail <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal Overlay (Wajib dari PRD, default hidden) -->
+    <div id="modal-overlay" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <!-- Modal Content -->
+        <div id="modal-content" class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all">
+            <!-- Konten Modal akan diisi oleh JS -->
+            <div class="p-8 text-center text-gray-500">
+                <p>Memuat data...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script placeholder (Nanti diisi kode JS dari PRD) -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
